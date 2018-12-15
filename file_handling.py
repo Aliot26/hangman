@@ -1,3 +1,6 @@
+import display
+
+
 def import_data(filename):
     """
     Import data from a file to a list. 
@@ -12,9 +15,9 @@ def import_data(filename):
                 result.append(line.strip().split(','))
     except FileNotFoundError:
         message = "FileNotFoundError"
-        display.print_command_result(message)
+        display.print_message(message)
     except Exception:
         message = "Unknown error"
-        display.print_command_result(message)
+        display.print_message(message)
     else:
         return result
