@@ -5,7 +5,6 @@ import display
 
 filename = "capitals.txt"
 wrong_letters = []
-alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 
 def choice_word():
@@ -26,6 +25,7 @@ def hide_word_by_user(word):
 
 
 def get_letter_from_user():
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
     while True:
         guess = inputs.get_input_string("Please enter a letter ").lower()
         if len(guess) != 1:
@@ -37,3 +37,7 @@ def get_letter_from_user():
             display.print_message("This is not a LETTER")
         else:
             return guess
+
+
+def check_letter_in_word():
+    pass
