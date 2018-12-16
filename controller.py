@@ -39,5 +39,17 @@ def get_letter_from_user():
             return guess
 
 
-def check_letter_in_word():
-    pass
+def check_letter_in_word(word, hide_word, guess):
+    list_letter_index = []
+    i = 0
+    while i < len(word):
+        if guess == word[i]:
+            list_letter_index.append(i)
+        i += 1
+    return list_letter_index
+
+
+def created_list_wrong_letters(list_letter_index, wrong_letters, guess):
+    if list_letter_index == []:
+        wrong_letters.append(guess)
+    return wrong_letters
