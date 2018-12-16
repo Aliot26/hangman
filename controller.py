@@ -4,7 +4,6 @@ import inputs
 import display
 
 filename = "capitals.txt"
-wrong_letters = []
 
 
 def choice_word():
@@ -24,7 +23,7 @@ def hide_word_by_user(word):
     return hide_word
 
 
-def get_letter_from_user():
+def get_letter_from_user(wrong_letters):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     while True:
         guess = inputs.get_input_string("Please enter a letter ").lower()
@@ -49,7 +48,7 @@ def check_letter_in_word(word, hide_word, guess):
     return list_letter_index
 
 
-def created_list_wrong_letters(list_letter_index, wrong_letters, guess):
+def update_list_wrong_letters(list_letter_index, wrong_letters, guess):
     if list_letter_index == []:
         wrong_letters.append(guess)
     return wrong_letters
