@@ -20,20 +20,15 @@ def main():
     hide_word = controller.hide_word_by_user(word)
     time.sleep(5)
     while life > 0:
-        os.system("clear")
-        display.print_message("Life : {}".format(life))
-        display.print_wrong_letters(wrong_letters)
-        display.print_word(hide_word)
+        display.print_header(life, wrong_letters, hide_word)
         request = inputs.get_input_number(
             "Please enter 1 if you want to guess the word \n or enter 2 if you want to guess a letter ")
         if request == 1:
             guess_word = inputs.get_input_string(
                 "Please enter word: ").lower()
-            controller.check_win_condition(life, word, guess_word)
-            display.print_message("You are wrong. This word : {}".format(word))
-            display.print_message("GAME OVER")
-            sys.exit(0)
-        guess = controller.get_letter_from_user(wrong_letters)
+            controller.check_guessed_word(word, guess_word)
+            return
+        guess = controller.get_letter_from_user(wrong_letters, hide_word)
         list_letter_index = controller.check_letter_in_word(
             word, guess)
         print(list_letter_index)
@@ -42,8 +37,10 @@ def main():
             wrong_letters = controller.update_list_wrong_letters(
                 list_letter_index, wrong_letters, guess)
         hide_word = controller.show_guessed_letter(
-            list_letter_index, guess, word, hide_word)
-        controller.check_win_condition(life, word, hide_word)
+            list_letter_index, guess, hide_word)
+        if controller.check_win_condition(word, hide_word):
+            return
+    game_over_condition(life)
 
 
 if __name__ == '__main__':

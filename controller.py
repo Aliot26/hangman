@@ -24,13 +24,16 @@ def hide_word_by_user(word):
     return hide_word
 
 
-def get_letter_from_user(wrong_letters):
+def get_letter_from_user(wrong_letters, hide_word):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     while True:
-        guess = inputs.get_input_string("Please enter a letter ")
+        guess = inputs.get_input_string("Please enter a letter ").lower()
         if len(guess) != 1:
             display.print_message("There must be single letter")
         elif guess in wrong_letters:
+            display.print_message(
+                "You have already tried this letter. Choose again")
+        elif guess in hide_word:
             display.print_message(
                 "You have already guessed this letter. Choose again")
         elif guess not in alphabet:
@@ -55,7 +58,7 @@ def update_list_wrong_letters(list_letter_index, wrong_letters, guess):
     return wrong_letters
 
 
-def show_guessed_letter(list_letter_index, guess, word, hide_word):
+def show_guessed_letter(list_letter_index, guess, hide_word):
     word_as_list = convert_word_to_list_of_letters(hide_word)
     for el in list_letter_index:
         word_as_list[el] = guess
@@ -63,12 +66,25 @@ def show_guessed_letter(list_letter_index, guess, word, hide_word):
     return hide_word
 
 
-def check_win_condition(life, word, hide_word):
-    if word == hide_word:
-        display.print_word(hide_word)
-        display.print_message("YOU WIN!")
-        sys.exit(0)
+def game_over_condition(life):
     if life == 0:
         display.print_message("Life : {}".format(life))
         display.print_message("Guessed  word : {}".format(word))
         display.print_message("GAME OVER")
+
+
+def check_win_condition(word, hide_word):
+    if word == hide_word:
+        display.print_word(hide_word)
+        display.print_message("YOU WIN!")
+        return True
+    return False
+
+
+def check_guessed_word(word, hide_word):
+    if check_win_condition(word, hide_word):
+        return True
+    else:
+        display.print_message("You are wrong. This word : {}".format(word))
+        display.print_message("GAME OVER")
+        return False
