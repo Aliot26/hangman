@@ -4,7 +4,10 @@ def print_hello():
 
 
 def print_word(word):
+    print()
+    print("Guess the word:")
     print(".".join(word))
+    print()
 
 
 def print_wrong_letters(wrong_letters):

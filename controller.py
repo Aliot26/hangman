@@ -1,3 +1,4 @@
+import sys
 import file_handling
 import random
 import inputs
@@ -19,7 +20,7 @@ def convert_word_to_list_of_letters(word):
 
 
 def hide_word_by_user(word):
-    hide_word = "-" * len(word)
+    hide_word = "_" * len(word)
     return hide_word
 
 
@@ -60,3 +61,14 @@ def show_guessed_letter(list_letter_index, guess, word, hide_word):
         word_as_list[el] = guess
     hide_word = ''.join(word_as_list)
     return hide_word
+
+
+def check_win_condition(life, word, hide_word):
+    if word == hide_word:
+        display.print_word(hide_word)
+        display.print_message("YOU WIN!")
+        sys.exit(0)
+    if life == 0:
+        display.print_message("Life : {}".format(life))
+        display.print_message("Guessed  word : {}".format(word))
+        display.print_message("GAME OVER")
