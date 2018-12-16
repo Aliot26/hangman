@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import display
 import controller
@@ -25,7 +26,13 @@ def main():
         display.print_word(hide_word)
         request = inputs.get_input_number(
             "Please enter 1 if you want to guess the word \n or enter 2 if you want to guess a letter ")
-        print(request)
+        if request == 1:
+            guess_word = inputs.get_input_string(
+                "Please enter word: ").lower()
+            controller.check_win_condition(life, word, guess_word)
+            display.print_message("You are wrong. This word : {}".format(word))
+            display.print_message("GAME OVER")
+            sys.exit(0)
         guess = controller.get_letter_from_user(wrong_letters)
         list_letter_index = controller.check_letter_in_word(
             word, guess)
