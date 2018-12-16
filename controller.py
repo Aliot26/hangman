@@ -13,9 +13,9 @@ def choice_word():
     return word
 
 
-def convert_word_to_set_of_letters(word):
+def convert_word_to_list_of_letters(word):
     letters_word = [char for char in str(word)]
-    return set(letters_word)
+    return letters_word
 
 
 def hide_word_by_user(word):
@@ -38,7 +38,7 @@ def get_letter_from_user(wrong_letters):
             return guess
 
 
-def check_letter_in_word(word, hide_word, guess):
+def check_letter_in_word(word, guess):
     list_letter_index = []
     i = 0
     while i < len(word):
@@ -52,3 +52,11 @@ def update_list_wrong_letters(list_letter_index, wrong_letters, guess):
     if list_letter_index == []:
         wrong_letters.append(guess)
     return wrong_letters
+
+
+def show_guessed_letter(list_letter_index, guess, word, hide_word):
+    word_as_list = convert_word_to_list_of_letters(hide_word)
+    for el in list_letter_index:
+        word_as_list[el] = guess
+    hide_word = ''.join(word_as_list)
+    return hide_word
