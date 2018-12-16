@@ -23,6 +23,7 @@ def main():
         display.print_message("Life : {}".format(life))
         display.print_wrong_letters(wrong_letters)
         display.print_word(hide_word)
+        request = controller.choice_letter_or_word()
         guess = controller.get_letter_from_user(wrong_letters)
         list_letter_index = controller.check_letter_in_word(
             word, guess)

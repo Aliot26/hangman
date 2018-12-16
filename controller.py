@@ -72,3 +72,19 @@ def check_win_condition(life, word, hide_word):
         display.print_message("Life : {}".format(life))
         display.print_message("Guessed  word : {}".format(word))
         display.print_message("GAME OVER")
+
+
+def choice_letter_or_word():
+    while True:
+        input_choice = inputs.get_input_string(
+            "Please enter 1 if you want to guess the word \n or enter 2 if you want to guess a letter ")
+        try:
+            if len(guess) != 1:
+            display.print_message("There must be single letter")
+        elif guess in wrong_letters:
+            display.print_message(
+                "You have already guessed this letter. Choose again")
+        elif guess not in alphabet:
+            display.print_message("This is not a LETTER")
+        else:
+            return input_choice
